@@ -66,9 +66,14 @@ def get_all_tracks(api_key, user):
     
     results = list(album_accumulator.items())
     results.sort(key=lambda x: -x[1])
+    def fmt(seconds):
+        h = seconds//3600
+        m = (seconds%3600)//60
+        s = (seconds%60)
+        return f'{h}h{m}m{s}s'
     for album,seconds in results:
         if seconds/3600 < 3:
             break
-        print(album, seconds) 
+        print(album, '-', fmt(seconds)) 
 
 get_all_tracks(APIKEY, 'vitamintk')
